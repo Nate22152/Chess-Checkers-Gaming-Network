@@ -1,7 +1,6 @@
 import java.net.*;
 import GameLogi.Board;
 import java.io.*;
-// deals with the game session and its states and actions
  
 class GameSession implements Runnable
 {
@@ -17,7 +16,6 @@ class GameSession implements Runnable
     @Override 
     public void run() {
         // Implement the game session logic here
-        // For example, you can handle turns, send board state to clients, etc.
         try(
         
             BufferedReader in1 = new BufferedReader(new InputStreamReader(p1.getInputStream()));

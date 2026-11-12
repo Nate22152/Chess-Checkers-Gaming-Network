@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess &amp; Checkers Gaming Network</title>
+
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/theme.css"  />
+</head>
+<body>
+
+  <!-- PAGE 1 — Game Selection Menu -->
+  <section id="page-menu" class="page page--active" aria-label="Game Selection">
+
+    <header class="site-header">
+      <h1 class="site-title">
+        ♟ <span class="site-title-accent">Chess</span> &amp; Checkers
+        <span class="site-title-accent">Network</span>
+      </h1>
+      <div class="divider"></div>
+      <p class="site-subtitle">Select a game to get started</p>
+    </header>
+
+    <div class="game-select-grid" role="list">
+
+      <!-- ── Chess Card ─────────────────────────── -->
+      <article id="card-chess" class="game-card game-card--chess"
+               role="listitem" aria-label="Play Chess">
+        <div class="card-stripe" aria-hidden="true"></div>
+
+        <span class="card-icon" aria-hidden="true">♟</span>
+        <h2 class="card-title">Chess</h2>
+        <p class="card-description">
+          Classic 8×8 strategic board game. Command your pieces,
+          protect your king, and outwit your opponent across the network.
+        </p>
+        <button id="btn-chess" class="card-btn" type="button">
+          Play Chess
+        </button>
+      </article>
+
+      <!-- ── Checkers Card ──────────────────────── -->
+      <article id="card-checkers" class="game-card game-card--checkers"
+               role="listitem" aria-label="Play Checkers">
+        <div class="card-stripe" aria-hidden="true"></div>
+
+        <span class="card-icon" aria-hidden="true">⬤</span>
+        <h2 class="card-title">Checkers</h2>
+        <p class="card-description">
+          Fast-paced diagonal board game. Jump, capture, and crown your
+          pieces in this competitive two-player classic.
+        </p>
+        <button id="btn-checkers" class="card-btn" type="button">
+          Play Checkers
+        </button>
+      </article>
+
+    </div><!-- /.game-select-grid -->
+
+  </section><!-- /#page-menu -->
+
+
+  <!-- PAGE 2 — Connection Lobby -->
+  <section id="page-lobby" class="page" aria-label="Player Connection Lobby">
+
+    <div class="lobby-container">
+
+      <!-- Lobby header (game name injected by lobby.js) -->
+      <header class="lobby-header">
+        <h2 class="lobby-title">
+          Connecting to
+          <span id="lobby-game-name" class="lobby-game-label">Game</span>
+        </h2>
+        <div class="divider"></div>
+        <p class="site-subtitle">Waiting for both players to join…</p>
+      </header>
+
+      <!-- ── Player Slots ────────────────────────────── -->
+      <div class="players-panel" aria-live="polite" aria-label="Player connection status">
+
+        <!-- Player 1 -->
+        <div id="slot-p1" class="player-slot player-slot--waiting"
+             role="status" aria-label="Player 1 status">
+          <div id="avatar-p1" class="player-avatar player-avatar--chess"
+               aria-hidden="true">♔</div>
+          <span class="player-name">Player 1</span>
+          <span id="role-p1" class="player-role">White Pieces</span>
+          <div class="status-pill">
+            <span id="dot-p1"          class="status-dot  status-dot--waiting"></span>
+            <span id="status-label-p1" class="status-label status-label--waiting">Waiting…</span>
+          </div>
+        </div>
+
+        <!-- VS badge -->
+        <div class="vs-badge" aria-hidden="true">VS</div>
+
+        <!-- Player 2 -->
+        <div id="slot-p2" class="player-slot player-slot--waiting"
+             role="status" aria-label="Player 2 status">
+          <div id="avatar-p2" class="player-avatar player-avatar--chess"
+               aria-hidden="true">♚</div>
+          <span class="player-name">Player 2</span>
+          <span id="role-p2" class="player-role">Black Pieces</span>
+          <div class="status-pill">
+            <span id="dot-p2"          class="status-dot  status-dot--waiting"></span>
+            <span id="status-label-p2" class="status-label status-label--waiting">Waiting…</span>
+          </div>
+        </div>
+
+      </div><!-- /.players-panel -->
+
+      <!-- ── Action Buttons ─────────────────────────── -->
+      <div class="lobby-actions">
+        <button id="btn-start-game" class="btn-start" type="button" disabled>
+            Waiting for players…
+        </button>
+        <button id="btn-back-menu" class="btn-back" type="button">
+          ← Menu
+        </button>
+      </div>
+    </div><!-- /.lobby-container -->
+
+  </section><!-- /#page-lobby -->
+
+
+  <!-- Toast notification container (populated by lobby.js) -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <script src="js/gameRouter.js" defer></script>
+  <script src="js/menu.js"       defer></script>
+  <script src="js/lobby.js"      defer></script>
+
+  <!-- Bootstrap all controllers after DOM is ready -->
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      GameRouter.init();
+      MenuController.init();
+      LobbyController.init();
+    });
+  </script>
+
+</body>
+</html>

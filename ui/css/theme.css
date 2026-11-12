@@ -1,0 +1,167 @@
+:root {
+  /* Brand palette */
+  --color-bg-primary:       #0d0f1a;   /* deep navy background          */
+  --color-bg-secondary:     #161929;   /* card / panel background        */
+  --color-bg-tertiary:      #1e2235;   /* hover / subtle surface         */
+  --color-border:           #2b3055;   /* panel borders                  */
+  --color-border-glow:      #4a5aaa;   /* focused / active borders       */
+
+  /* Text */
+  --color-text-primary:     #e8ecf4;   /* main readable text             */
+  --color-text-secondary:   #8892b0;   /* subdued labels                 */
+  --color-text-muted:       #4a5568;   /* disabled / placeholder         */
+
+  /* Accent — Chess (gold) */
+  --color-chess-primary:    #c9a84c;
+  --color-chess-secondary:  #e8c97a;
+  --color-chess-glow:       rgba(201, 168, 76, 0.25);
+  --color-chess-dark:       #7a6020;
+
+  /* Accent — Checkers (crimson) */
+  --color-checkers-primary:  #c0392b;
+  --color-checkers-secondary: #e74c3c;
+  --color-checkers-glow:     rgba(192, 57, 43, 0.25);
+  --color-checkers-dark:     #7b241c;
+
+  /* Status colors */
+  --color-status-connected:    #27ae60;
+  --color-status-waiting:      #f39c12;
+  --color-status-disconnected: #e74c3c;
+  --color-status-connected-bg: rgba(39, 174, 96,  0.12);
+  --color-status-waiting-bg:   rgba(243, 156, 18, 0.12);
+
+  /* Interactive */
+  --color-btn-hover-shadow:  rgba(74, 90, 170, 0.5);
+  --color-overlay:           rgba(0, 0, 0, 0.6);
+}
+
+/* Global Base Styles (color-only rules) */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Menu Card Colors */
+.game-card {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.game-card:hover {
+  border-color: var(--color-border-glow);
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Chess card accent */
+.game-card--chess {
+  --card-accent:      var(--color-chess-primary);
+  --card-accent-soft: var(--color-chess-glow);
+  --card-accent-dark: var(--color-chess-dark);
+  --card-accent-sec:  var(--color-chess-secondary);
+}
+
+/* Checkers card accent */
+.game-card--checkers {
+  --card-accent:      var(--color-checkers-primary);
+  --card-accent-soft: var(--color-checkers-glow);
+  --card-accent-dark: var(--color-checkers-dark);
+  --card-accent-sec:  var(--color-checkers-secondary);
+}
+
+.game-card .card-icon {
+  color: var(--card-accent);
+  text-shadow: 0 0 20px var(--card-accent-soft);
+}
+
+.game-card .card-title {
+  color: var(--card-accent-sec);
+}
+
+.game-card .card-description {
+  color: var(--color-text-secondary);
+}
+
+.game-card .card-btn {
+  background: linear-gradient(135deg, var(--card-accent-dark), var(--card-accent));
+  color: var(--color-bg-primary);
+  border-color: var(--card-accent);
+}
+
+.game-card .card-btn:hover {
+  background: linear-gradient(135deg, var(--card-accent), var(--card-accent-sec));
+  box-shadow: 0 4px 20px var(--card-accent-soft);
+}
+
+.game-card:hover .card-stripe {
+  background: linear-gradient(90deg, var(--card-accent), transparent);
+}
+
+/* Lobby / Connection Panel Colors */
+.lobby-header--chess   { color: var(--color-chess-secondary);   }
+.lobby-header--checkers { color: var(--color-checkers-secondary); }
+
+.player-slot {
+  background-color: var(--color-bg-secondary);
+  border-color: var(--color-border);
+}
+
+.player-slot--connected {
+  border-color: var(--color-status-connected);
+  background-color: var(--color-status-connected-bg);
+}
+
+.player-slot--waiting {
+  border-color: var(--color-status-waiting);
+  background-color: var(--color-status-waiting-bg);
+}
+
+.status-dot--connected   { background-color: var(--color-status-connected);    }
+.status-dot--waiting     { background-color: var(--color-status-waiting);       }
+.status-dot--disconnected { background-color: var(--color-status-disconnected); }
+
+.status-label--connected   { color: var(--color-status-connected);    }
+.status-label--waiting     { color: var(--color-status-waiting);       }
+.status-label--disconnected { color: var(--color-status-disconnected); }
+
+.player-avatar--chess    { background: linear-gradient(135deg, var(--color-chess-dark),    var(--color-chess-primary));    }
+.player-avatar--checkers { background: linear-gradient(135deg, var(--color-checkers-dark), var(--color-checkers-primary)); }
+
+/* Start button — inherits the active-game accent from JS-applied class */
+.btn-start {
+  background: linear-gradient(135deg, #1a4a2e, #27ae60);
+  color: #fff;
+  border-color: var(--color-status-connected);
+}
+
+.btn-start:disabled {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.btn-back {
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+  background-color: transparent;
+}
+
+.btn-back:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-glow);
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Page Title */
+.site-title        { color: var(--color-text-primary); }
+.site-subtitle     { color: var(--color-text-secondary); }
+.site-title-accent { color: var(--color-border-glow); }
+
+/* Divider / Separator */
+.divider { background-color: var(--color-border); }
+
+/* Toast / Notification Colors */
+.toast--info    { background-color: #1a2a4a; border-color: var(--color-border-glow); }
+.toast--success { background-color: #1a3a2a; border-color: var(--color-status-connected); }
+.toast--error   { background-color: #3a1a1a; border-color: var(--color-status-disconnected); }
