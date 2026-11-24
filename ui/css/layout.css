@@ -299,8 +299,7 @@ body {
 }
 
 .connection-status,
-.connection-log,
-.page-link {
+.connection-log {
   color: var(--color-text-secondary);
 }
 
