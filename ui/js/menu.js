@@ -1,3 +1,4 @@
+// Routes card and button clicks through the same game selection flow.
 const MenuController = (() => {
   function _getEl(id) {
     const el = document.getElementById(id);
