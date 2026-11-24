@@ -269,12 +269,65 @@ body {
   margin-top: 0.25rem;
 }
 
-/* Connection Info Bar */
-.connection-info {
-  font-size: 0.82rem;
-  opacity: 0.6;
-  text-align: center;
-  letter-spacing: 0.03em;
+.connection-form,
+.connection-log,
+.spectator-board {
+  width: 100%;
+  max-width: 420px;
+}
+
+.connection-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.connection-form input,
+.connection-form select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border-glow);
+  border-radius: 8px;
+  font: inherit;
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  color-scheme: dark;
+}
+
+#host-address:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.connection-status,
+.connection-log,
+.page-link {
+  color: var(--color-text-secondary);
+}
+
+.connection-log summary {
+  cursor: pointer;
+}
+
+.connection-log ol {
+  max-height: 12rem;
+  overflow: auto;
+  list-style: none;
+  overflow-wrap: anywhere;
+}
+
+.connection-error {
+  color: #ff968a;
+}
+
+.spectator-board {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-secondary);
+}
+
+.spectator-board pre {
+  overflow-x: auto;
 }
 
 /* Toast */
@@ -293,7 +346,8 @@ body {
   border-radius: 10px;
   border: 1px solid;
   font-size: 0.88rem;
-  max-width: 320px;
+  max-width: min(320px, calc(100vw - 3rem));
+  overflow-wrap: anywhere;
   animation: slideIn 0.3s ease;
 }
 

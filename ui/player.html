@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join a Game | Chess &amp; Checkers Network</title>
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <script src="js/feedback.js" defer></script>
+  <script src="js/player.js" defer></script>
+</head>
+<body>
+  <main class="page page--active">
+    <div class="lobby-container">
+      <header class="lobby-header">
+        <h1 class="site-title">Join a Game</h1>
+      </header>
+
+      <form id="player-form" class="connection-form" novalidate>
+        <label for="player-address">Game server URL</label>
+        <input id="player-address" type="url" placeholder="Enter a full server URL"
+               aria-describedby="player-connect-todo" autocapitalize="none" spellcheck="false" required />
+        <label for="player-game">Game</label>
+        <select id="player-game">
+          <option value="chess">Chess</option>
+          <option value="checkers">Checkers</option>
+        </select>
+        <button id="player-connect" class="btn-start" type="submit" disabled>Connect</button>
+        <p id="player-connect-todo" class="connection-status">
+          <strong>TODO:</strong> Connect to the server and confirm the assigned player slot.
+        </p>
+        <p id="player-status" class="connection-status" role="status">Disconnected.</p>
+      </form>
+
+      <section id="player-board" class="spectator-board" aria-label="Game board" hidden>
+        <p id="player-turn"></p>
+        <pre id="player-board-state"></pre>
+      </section>
+
+      <details class="connection-log">
+        <summary>Connection log</summary>
+        <ol id="connection-log"></ol>
+      </details>
+    </div>
+  </main>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>

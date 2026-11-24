@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chess &amp; Checkers Gaming Network</title>
+  <title>Host &amp; Spectate | Chess &amp; Checkers Network</title>
 
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/theme.css"  />
@@ -19,14 +19,15 @@
         <span class="site-title-accent">Network</span>
       </h1>
       <div class="divider"></div>
-      <p class="site-subtitle">Select a game to get started</p>
+      <p class="site-subtitle">Choose a game to host and watch</p>
+      <a class="page-link" href="player.html">Join as a player</a>
     </header>
 
     <div class="game-select-grid" role="list">
 
       <!-- ── Chess Card ─────────────────────────── -->
       <article id="card-chess" class="game-card game-card--chess"
-               role="listitem" aria-label="Play Chess">
+               role="listitem" aria-label="Host Chess">
         <div class="card-stripe" aria-hidden="true"></div>
 
         <span class="card-icon" aria-hidden="true">♟</span>
@@ -36,13 +37,13 @@
           protect your king, and outwit your opponent across the network.
         </p>
         <button id="btn-chess" class="card-btn" type="button">
-          Play Chess
+          Host Chess
         </button>
       </article>
 
       <!-- ── Checkers Card ──────────────────────── -->
       <article id="card-checkers" class="game-card game-card--checkers"
-               role="listitem" aria-label="Play Checkers">
+               role="listitem" aria-label="Host Checkers">
         <div class="card-stripe" aria-hidden="true"></div>
 
         <span class="card-icon" aria-hidden="true">⬤</span>
@@ -52,7 +53,7 @@
           pieces in this competitive two-player classic.
         </p>
         <button id="btn-checkers" class="card-btn" type="button">
-          Play Checkers
+          Host Checkers
         </button>
       </article>
 
@@ -69,12 +70,21 @@
       <!-- Lobby header (game name injected by lobby.js) -->
       <header class="lobby-header">
         <h2 class="lobby-title">
-          Connecting to
-          <span id="lobby-game-name" class="lobby-game-label">Game</span>
+          <span id="lobby-game-name">Game</span> host lobby
         </h2>
         <div class="divider"></div>
-        <p class="site-subtitle">Waiting for both players to join…</p>
+        <p class="site-subtitle">Start the game after both players join</p>
       </header>
+
+      <div class="connection-form">
+        <label for="host-address">Game server address</label>
+        <input id="host-address" type="url" placeholder="Awaiting server integration"
+               aria-describedby="host-address-todo" disabled />
+        <p id="host-address-todo" class="connection-status">
+          <strong>TODO:</strong> Connect the host automatically and show a shareable player link.
+        </p>
+        <p id="host-status" class="connection-status" role="status">Disconnected</p>
+      </div>
 
       <!-- ── Player Slots ────────────────────────────── -->
       <div class="players-panel" aria-live="polite" aria-label="Player connection status">
@@ -85,7 +95,7 @@
           <div id="avatar-p1" class="player-avatar player-avatar--chess"
                aria-hidden="true">♔</div>
           <span class="player-name">Player 1</span>
-          <span id="role-p1" class="player-role">White Pieces</span>
+          <span class="player-role">White Pieces</span>
           <div class="status-pill">
             <span id="dot-p1"          class="status-dot  status-dot--waiting"></span>
             <span id="status-label-p1" class="status-label status-label--waiting">Waiting…</span>
@@ -101,7 +111,7 @@
           <div id="avatar-p2" class="player-avatar player-avatar--chess"
                aria-hidden="true">♚</div>
           <span class="player-name">Player 2</span>
-          <span id="role-p2" class="player-role">Black Pieces</span>
+          <span class="player-role">Black Pieces</span>
           <div class="status-pill">
             <span id="dot-p2"          class="status-dot  status-dot--waiting"></span>
             <span id="status-label-p2" class="status-label status-label--waiting">Waiting…</span>
@@ -110,25 +120,35 @@
 
       </div><!-- /.players-panel -->
 
+      <section id="host-board" class="spectator-board" aria-label="Game board" hidden>
+        <p id="host-turn"></p>
+        <pre id="host-position"></pre>
+      </section>
+
       <!-- ── Action Buttons ─────────────────────────── -->
       <div class="lobby-actions">
         <button id="btn-start-game" class="btn-start" type="button" disabled>
-            Waiting for players…
+          Start Game
         </button>
         <button id="btn-back-menu" class="btn-back" type="button">
-          ← Menu
+          Back to menu
         </button>
       </div>
+      <details class="connection-log">
+        <summary>Connection log</summary>
+        <ol id="connection-log"></ol>
+      </details>
     </div><!-- /.lobby-container -->
 
   </section><!-- /#page-lobby -->
 
 
-  <!-- Toast notification container (populated by lobby.js) -->
+  <!-- Connection errors are announced here and kept in the connection log. -->
   <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="false"></div>
 
   <script src="js/gameRouter.js" defer></script>
   <script src="js/menu.js"       defer></script>
+  <script src="js/feedback.js"   defer></script>
   <script src="js/lobby.js"      defer></script>
 
   <!-- Bootstrap all controllers after DOM is ready -->
