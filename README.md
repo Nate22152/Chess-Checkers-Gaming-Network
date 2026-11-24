@@ -11,8 +11,12 @@ Move actions should be in format of (**IT WILL NOT BE CASE SENSITIVE**)
 Chess Ex:
     move rk 4 4
 
+Checkers moves give the square the piece is on and the square it is going to (columns and rows are 0-7):
+
+    **(Piece) (FromCol) (FromRow) (ToCol) (ToRow)**
+
 Checkers Ex: 
-    move pw 3 3 
+    pw 0 5 1 4 
 
 Chess Piece names:
     Pawn - **Pw**
