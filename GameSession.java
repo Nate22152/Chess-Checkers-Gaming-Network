@@ -23,7 +23,6 @@ class GameSession implements Runnable
     @Override
     public void run() {
         // Implement the game session logic here
-        // For example, you can handle turns, send board state to clients, etc.
         try(
 
             BufferedReader in1 = new BufferedReader(new InputStreamReader(p1.getInputStream()));
